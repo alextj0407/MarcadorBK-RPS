@@ -1,0 +1,86 @@
+<!--
+	ALEX TAQUEZ JALVIN
+	AÑO 2018
+	materialize,jquery,django
+-->
+
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8">
+			<link rel="stylesheet" href="{% static 'css/styles.css' %} ">
+			<link rel="stylesheet" href="{% static 'materialize/css/materialize.css' %} ">
+			<link rel="stylesheet" href="{% static 'materialize/css/material_icons.css' %} ">
+			{% block link %}{% endblock link %}
+		<title>
+			{% block titulo %}
+				inicio
+			{% endblock titulo %}
+		</title>
+	</head>
+	<body>
+
+		<div class="navbar-fixed">
+			<nav class="nav-extended" >
+				<div class="nav-wrapper container">
+					<a href="{% url 'index' %}" class="brand-logo"><img src="{% static 'img/sena.png' %} " id="logo"></a>
+					<a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+					<ul id="nav-mobile" class="right hide-on-med-and-down " >
+						<li><a href="{% url 'lista_equipos' %}">Equipos</a></li>
+						<li><a href="{% url 'ciudades' %}">Ciudades</a></li>
+						<li><a href="{% url 'resultados' %}">Resultados</a></li>
+						<li><a href="{% url 'tablero2' %}">Iniciar Partido</a></li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+
+		<ul class="sidenav" id="mobile-demo">
+			<li><a href="{% url 'lista_equipos' %}">Equipos</a></li>
+			<li><a href="{% url 'ciudades' %}">Ciudades</a></li>
+			<li><a href="{% url 'resultados' %}">Resultados</a></li>
+			<li><a href="{% url 'tablero2' %}">Iniciar Partido</a></li>		
+		</ul>
+
+
+		<div id="contenido" class="container">
+			{% block contenido %}
+				
+			{% endblock contenido %}
+		</div>
+
+		
+		<footer  class="page-footer" style="background-color:#238276">
+			
+			<div class="container">
+	            <div class="row">
+	              	<div class="col l6 s12">
+	                	<h5 class="white-text">SENA</h5>
+	                	<p class="grey-text text-lighten-4">Centro de Teleinformatica y Produccion Industrial</p>
+	              	</div>
+	              	<div class="col l4 offset-l2 s12">
+	                	<ul>
+	                  		<li>
+	                  			<a class="grey-text text-lighten-3" href="#facebook.com!"><img class="facebook" src="{% static 'img/facebook.png' %}" alt="">Siguenos en facebook</a>
+	                  		</li>
+	                	</ul>
+	              	</div>
+	            </div>
+	        </div>
+	    	<script src="{% static 'jquery/jquery.min.js' %}"></script>
+			<script src="{% static 'materialize/js/materialize.min.js' %}"></script>
+
+				<script>
+					$(document).ready(function(){
+		                $('.sidenav').sidenav();
+		                $('select').formSelect();
+		                $('.modal').modal();
+		 			 });
+				</script>
+				{% block script %}{% endblock script %}
+		</footer>
+	</body>
+
+
+</html>

@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+
+{% block link %}
+{% load staticfiles %}
+<link rel="stylesheet" href="{% static 'css/tablero.css' %} ">
+{% endblock link %}
+
+{% block titulo %}
+	tablero
+{% endblock titulo %}
+{% block contenido %}
+	
+	<div align="center">
+		<p style="font-size:40px;">
+			<b id="minutos">00</b>	
+			<b>:</b>	
+			<b id="segundos">00</b>	
+			<b>:</b>	
+			<b id="decimas">00</b>	
+		</p>
+		<p id="p_end" class="oculto">El compromiso a terminado <b id="msj_end">5</b> </p>
+	</div>
+	<div class="row" align="center">
+		<div class="col s12 m4 l4">
+			<!-- EQUIPO LOCAL -->
+			<p>
+				<label>
+						<span>LOCAL</span>
+						<select name="local" id="local" class="local">
+								<option value="0" disabled="disabled" selected="">Local</option>
+								{% for e1 in equipos %}
+									<option id="{{e1.id}}eq1" value="{{e1.id}}">{{e1.nombre}}</option>		
+								{% endfor %}	
+						</select>
+					</label>
+			</p>
+			<p style="font-size:30px;">Puntos <span id="marcador_eq1">0</span></p>
+			<p style="font-size:20px;">Faltas <span id="faltas_eq1">0</span></p>
+		</div>	
+
+		<div class="col s12 m4 l4">
+			
+			<a id='start' class="waves-effect waves-light btn green" disabled=""> <b>Iniciar</b></a>
+			<a id='stop' class="waves-effect waves-light btn green oculto"> <b>Detener</b></a>
+			<a id='continuar' class="waves-effect waves-light btn green oculto"> <b>Continuar</b></a>
+			<p id="periodo" style="font-size:30px;">Periodo</p>
+			<span id="set" style="font-size:40px;">1</span>
+			<p>
+					<a id="detalles" class="waves-effect waves-light btn green oculto"> <b>Ver Resultados</b></a>
+			</p>
+		
+			<p>
+					<a id="nuevo" class="waves-effect waves-light btn green oculto" href="{% url 'tablero2' %}"> <b>Nuevo juego</b></a>
+				</p>
+		</div>
+
+		<div class="col s12 m4 l4">
+			<!-- EQUIPO VISITANTE -->
+			<p>
+					<label>
+						<span>VISITANTE</span>
+						<select name="visitante" id="visitante" class="visitante">
+								<option value="0" disabled="disabled" selected="">visitante</option>
+								{% for e1 in equipos %}
+									<option id="{{e1.id}}eq2" value="{{e1.id}}">{{e1.nombre}}</option>		
+								{% endfor %}	
+						</select>
+					</label>
+			</p>
+			<p style="font-size:30px;">Puntos <span id="marcador_eq2">0</span></p>
+			<p style="font-size:20px;">Faltas <span id="faltas_eq2">0</span></p>
+		</div>
+	</div>
+
+	<div class="row" align="center">
+		<div class="col s6 m4 l4">
+			<p>
+				
+			  <a class="waves-effect waves-light btn blue marcar_punto" disabled="" onclick="punto_eq1(1);"> <b>+1</b></a>
+			  <a class="waves-effect waves-light btn blue marcar_punto" disabled="" onclick="punto_eq1(2);"> <b>+2</b></a>
+			  <a class="waves-effect waves-light btn blue marcar_punto" disabled="" onclick="punto_eq1(3);"> <b>+3</b></a>
+			  
+			</p>
+
+			<a id="falta_eq1" class="waves-effect waves-light btn red modal-trigger" href="#modal1" disabled=""> <b>Falta</b></a>
+			<a id="anular_eq1" class="waves-effect waves-light btn orange modal-trigger" href="#modal2" disabled=""><b>Anular </b> </a>
+
+		</div>
+		<div class="col s0 m4 l4">
+		</div>
+		<div class="col s6 m4 l4">
+			<p>
+			  <a class="waves-effect waves-light btn blue marcar_punto" disabled="" onclick="punto_eq2(1);"> <b>+1</b></a>
+			  <a class="waves-effect waves-light btn blue marcar_punto" disabled="" onclick="punto_eq2(2);"> <b>+2</b></a>
+			  <a class="waves-effect waves-light btn blue marcar_punto" disabled="" onclick="punto_eq2(3);"> <b>+3</b></a>
+			</p>
+
+			  <a id="falta_eq2" class="waves-effect waves-light btn red modal-trigger" href="#modal1" disabled=""> <b>Falta</b></a>
+			  <a id="anular_eq2" class="waves-effect waves-light btn orange modal-trigger" href="#modal2" disabled=""><b>Anular </b></a>
+		</div>
+	</div>
+
+
+	<div id="falta" class="modal">
+		<div class="modal-content">
+		  <h4>Falta</h4>
+		  <p>Marcar Falta</p>
+		</div>
+		<div class="modal-footer">
+		  <a href="#!" class="modal-close waves-effect waves-green btn-flat">Si</a>
+		  <a href="#!" class="modal-close waves-effect waves-green btn-flat">No</a>
+		</div>
+	</div>
+
+	<div id="anular" class="modal">
+		<div class="modal-content">
+		  <h4>Anular</h4>
+		  <p>Anular Punto</p>
+		</div>
+		<div class="modal-footer">
+		  <a href="#!" class="modal-close waves-effect waves-green btn-flat">Si</a>
+		  <a href="#!" class="modal-close waves-effect waves-green btn-flat">No</a>
+		</div>
+	</div>
+
+{% endblock contenido %}
+{% block script %}
+<script src="{% static 'js/tablero.js' %}"></script>
+{% endblock script %}

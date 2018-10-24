@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block contenido %}
+
+
+	<h1 align="center">Lista de Ciudades</h1>
+	<a class="btn-floating btn-large waves-effect waves-light" style="background-color:#238276" href="{% url 'agregar-ciudad' %}" ><i class="material-icons">add</i></a>
+	<table class="responsive-table">
+		<thead>
+	      <tr>
+	          <th>Nombre</th>
+	          <th>Editar</th>
+	          <th>Eliminar</th>
+	          
+	      </tr>
+	    </thead>
+	    <tbody>
+	      <tr>
+	{% for i in ciudades %}</th>
+	        <td>{{i.nombre}}</th>
+	        <td><a href="{% url 'editar-ciudad' id=i.id %}">Editar</a></td>
+	        <td><a href="{% url 'borrar-ciudad' id=i.id %}">Eliminar</a></td>
+	       
+	      </tr>
+	{% endfor %}
+	     
+	    </tbody>
+	</table>
+{% endblock %}

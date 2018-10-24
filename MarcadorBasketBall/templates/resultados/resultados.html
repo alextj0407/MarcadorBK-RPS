@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block titulo %}
+	resultados
+{% endblock titulo %}
+{% block contenido %}
+	<h1 align="center">Resultados</h1>
+
+	<table class="responsive-table">
+		<thead>
+			<tr>
+				<th>Local</th>
+				<th>puntos</th>
+				<th>VS</th>			
+				<th>puntos</th>
+				<th>Visitante</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for i in equipos|dictsort:0 reversed %}
+				<tr class="hover">
+					<td>{{i.1}}</td>
+					<td>{{i.2}}</td>
+					<td><a href="{% url 'compromiso' pk=i.0 %}">vs</a></td>
+					<td>{{i.4}}</td>
+					<td>{{i.3}}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock contenido %}

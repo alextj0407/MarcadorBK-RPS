@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block titulo %}
+	equipo
+{% endblock titulo %}
+{% block contenido %}
+	
+	<h1 align="center">Equipo</h1>
+	<form action="" method="POST">
+		{% csrf_token %}
+		{{form.as_p}}
+		<input id="guardar"  type="submit" value="Guardar" class="waves-effect waves-light btn" style="background-color:#238276" >
+		<a href="{% url 'lista_equipos' %}" class="waves-effect waves-light btn" style="background-color:#238276">Cancelar</a>
+	</form>
+
+{% endblock contenido %}

@@ -1,0 +1,32 @@
+nav.nav-extended {
+    height: auto;
+    margin-bottom: 35px;
+}
+
+div#contenido {
+	margin-bottom: 250px;
+}
+
+#logo{
+	width: 65px;
+	margin: 3px auto;
+}
+
+#color,#guardar{
+	color: white;
+}
+
+html {position:relative;min-height: 100%}
+footer {bottom:0;position: absolute;width:100%;}
+
+.facebook{
+	width: 45px;
+}
+
+tr.hover:hover{
+	background-color: rgba(0, 0, 0, 0.1);
+}
+
+ul.errorlist>li,span.errorlist{
+	background: pink;border-radius: 30px;padding: 5px;
+}

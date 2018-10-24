@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		{% load staticfiles %}
+		<meta charset="UTF-8">
+		<title>Cronómetro</title>
+		<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+		<!--<link rel="stylesheet" href="{% static 'materialize/css/materialize.css' %} ">-->
+	</head>
+	<body>
+		
+		<label for="numero_compromiso">Compromiso numero: </label>
+		<input id="numero_compromiso" type="number" value="{{nc}}" min="1">
+
+		<div>
+			<span id="marcador_eq1">0</span>
+
+			<button id="mas2_eq1" onclick="punto_eq1(2);" disabled="disabled">+add2</button>
+			<button id="mas3_eq1" onclick="punto_eq1(3);" disabled="disabled">add</button>
+			<button id="anular_eq1" class="anular_pt" disabled="disabled">Anular Punto</button>
+
+			<select name="equipo1" id="equipo1">
+				<option value="" disabled="disabled" selected="">--Local--</option>
+				{% for e1 in equipos %}
+					<option id="{{e1.id}}eq1" value="{{e1.id}}">{{e1.nombre}}</option>		
+				{% endfor %}	
+			</select>
+			<span id="faltas_eq1">0</span>
+			<button id="falta_eq1" disabled="disabled">Falta</button>
+		</div>
+
+		<div>
+			<span id="marcador_eq2">0</span>
+	
+			<button id="mas2_eq2" onclick="punto_eq2(2);" disabled="disabled">add</button>
+			<button id="mas3_eq2" onclick="punto_eq2(3);" disabled="disabled">add</button>
+			<button id="anular_eq2" class="anular_pt" disabled="disabled">Anular Punto</button>
+			
+			<select name="equipo2" id="equipo2" disabled="disabled">
+				<option value="" disabled="disabled" selected="">--Visitante--</option>
+				{% for e1 in equipos %}
+					<option id="{{e1.id}}eq2" value="{{e1.id}}">{{e1.nombre}}</option>		
+				{% endfor %}	
+			</select>
+
+			<span id="faltas_eq2">0</span>
+			<button id="falta_eq2" disabled="disabled">Falta</button>
+		</div>
+
+		<div id="contenedor">
+			<div class="c" id="minutos">00</div>
+			<div class="c">:</div>
+			<div class="c" id="segundos">00</div>
+			<div class="c">:</div>
+			<div class="c" id="decimas">00</div>	
+		</div>
+		<button id="start" disabled="disabled">Iniciar</button>
+		<button id="continuar" disabled="disabled">Continuar</button>
+		<a id="limpiar" style="visibility:hidden;" href="{% url 'tablero2' %}" class="button">Limpiar</a>
+
+		<div>
+			<span id="set">1</span>
+			<p>Periodo</p>
+		</div>
+		
+		<a href="#" onclick="history.back()">Regresar</a>
+
+		<script src="{% static 'jquery/jquery.js' %}"></script>
+		<script src="{% static 'js/log.js' %}"></script>
+		<!--<script src="{% static 'materialize/js/materialize.js' %}"></script>-->
+
+		<script>
+			$(document).ready(function(){
+			   $('.sidenav').sidenav();
+			    $('select').formSelect();
+			 });
+		</script>
+
+	</body>
+</html>

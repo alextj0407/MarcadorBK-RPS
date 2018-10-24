@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block titulo %}
+	equipo
+{% endblock titulo %}
+{% block contenido %}
+	
+	<h1 align="center">Lista de Equipos</h1>
+	<a class="btn-floating btn-large waves-effect waves-light" style="background-color:#238276" href="{% url 'agregar_equipo' %}" style="background-color:#238276"><i class="material-icons">add</i></a>
+	<table class="responsive-table">
+		<thead>
+	      <tr>
+	          <th>Nombre</th>
+	          <th>Ciudad</th>
+	          <th>Jugadores</th> 
+	          <th>Editar</th>
+	          <th>Eliminar</th>
+	          
+	      </tr>
+	    </thead>
+	    <tbody>
+	      <tr>
+	{% for i in equipo_list %}</th>
+	        <td>{{i.nombre}}</th>
+	        <td>{{i.ciudad.nombre}}</td>
+	        <td>{{i.numero_jugadores}}</td>
+	        <td><a href="{% url 'editar_equipo' pk=i.id %}">Editar</a></td>
+	        <td><a href="{% url 'eliminar_equipo' pk=i.id %}">Eliminar</a></td>
+	      </tr>
+	{% endfor %}
+	     
+	    </tbody>
+	</table>
+
+{% endblock contenido %}

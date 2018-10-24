@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block titulo %}
+	detalles
+{% endblock titulo %}
+{% block contenido %}
+{% load staticfiles %}
+	<h1 align="center">Compromiso Numero {{equipo1.compromiso.numero}}</h1>
+	
+	<div style="display:flex;min-width:600px;" class="card">
+		<div style="width:30%;" class="card-content">
+			<div style="min-height:100px;">
+				<h4 align="center">{{equipo1.equipo.nombre}}</h4>
+			</div>
+			<div align="right">
+				<h6>faltas: {{equipo1.numero_faltas}}</h6>
+				<h6>cestas: {{cest_eq1}}</h6>
+				<h6>puntos: {{tot_eq1}}</h6>
+			</div>
+			
+			<table>
+				<thead>
+					<tr>
+						<th>valor</th>
+						<th>set</th>
+						<th>minuto</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for i in pnt_eq1 %}
+						<tr>
+							<th>{{i.valor}}</th>
+							<th>{{i.numero_set}}</th>
+							<th>{{i.minuto}}</th>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+		<div style="margin:30px;"> <img src="{% static 'img/imagen.png' %}" style="width:200px;"> </div>
+		<div style="width:30%;" class="card-content">
+			<div style="min-height:100px;">
+				<h4 align="center">{{equipo2.equipo.nombre}}</h4>
+			</div>
+			<h6>faltas: {{equipo2.numero_faltas}}</h6>
+			<h6>cestas: {{cest_eq2}}</h6>
+			<h6>puntos: {{tot_eq2}}</h6>
+			
+			<table>
+				<thead>
+					<tr>
+						<th>valor</th>
+						<th>set</th>
+						<th>minuto</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for i in pnt_eq2 %}
+						<tr>
+							<th>{{i.valor}}</th>
+							<th>{{i.numero_set}}</th>
+							<th>{{i.minuto}}</th>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+{% endblock contenido %}

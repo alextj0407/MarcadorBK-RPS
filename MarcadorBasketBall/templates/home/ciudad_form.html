@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block titulo %}{{msj}}{% endblock %}
+{% block contenido %}
+	<h1 align="center">{{msj}}</h1>
+	<form action="" method="POST">
+			
+			{{form.as_p}}
+			{% csrf_token %}
+			{% if msjError %}
+			<span class="errorlist">{{msjError}}</span>
+			<br style="margin-bottom: 20px;">
+			{% endif %}
+			<input id="guardar"  type="submit" name="enviar" value="Guardar" class="waves-effect waves-light btn" style="background-color:#238276">
+			<a href="{% url 'ciudades' %}" class="waves-effect waves-light btn" style="background-color:#238276">Cancelar</a>
+	</form>
+{% endblock %}
